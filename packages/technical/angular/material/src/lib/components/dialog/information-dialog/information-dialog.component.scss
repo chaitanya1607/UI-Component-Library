@@ -1,0 +1,14 @@
+.mat-icon {
+  width: fit-content;
+  font-size: 50px;
+}
+.dialog{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.dialog .message {
+  font-size: 18px;
+}
+

@@ -1,0 +1,19 @@
+@import '../components/table/table.theme';
+@import '../components/input-text/input-text.theme';
+@import '../components/form-errors/form-errors.theme';
+@import '../components/select/select.theme';
+@import '../components/chip-list/chip-list.component.theme';
+@import '../components/rich-text-editor/rich-text-editor.theme';
+@import '../components/email-component/email-component.theme';
+@import '../components/dialog/dialog.theme';
+
+@mixin apply-theme($theme) {
+  @include table-theme($theme);
+  @include form-errors($theme);
+  @include select-theme($theme);
+  @include input-text-theme($theme);
+  @include chip-list($theme);
+  @include editor-theme($theme);
+  @include dialog-theme($theme);
+  @include email-theme($theme);
+}

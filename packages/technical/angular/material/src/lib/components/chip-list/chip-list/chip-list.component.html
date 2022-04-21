@@ -1,0 +1,71 @@
+<div *ngIf="!readonly; else readOnlyChipsItem" class="chip-container">
+  <mat-form-field appearance="outline">
+    <mat-chip-list #chipList [attr.aria-label]="ariaLabel">
+      <mat-chip
+        selected
+        class="chip-border mat-chip-selected"
+        *ngFor="let item of chips"
+        [removable]="true"
+        (removed)="removeChipItem(item)"
+        [color]="color"
+        [disabled]="disabled"
+      >
+        <span class="chip-text">{{ item?.value }}</span>
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <!-- can be edited to add new chip item -->
+      <ng-container *ngIf="options?.length === 0; else autoCompleteOption">
+        <input
+          [placeholder]="placeholder"
+          [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+          [matChipInputAddOnBlur]="true"
+          (matChipInputTokenEnd)="addChipItem($event)"
+          [disabled]="disabled"
+        />
+      </ng-container>
+      <ng-template #autoCompleteOption>
+        <!-- mat chip token end can be added here for now its restricted only selects from the options avialable -->
+        <input
+          [formControl]="searchCtrl"
+          [placeholder]="placeholder"
+          [matAutocomplete]="auto"
+          [matChipInputFor]="chipList"
+          (blur)="onBlur()"
+          [disabled]="disabled"
+        />
+      </ng-template>
+    </mat-chip-list>
+    <mat-icon matSuffix>{{ iconName }}</mat-icon>
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      (optionSelected)="selectedOption($event)"
+    >
+      <mat-option
+        *ngFor="let item of filteredLists | async"
+        [value]="item.value"
+      >
+        {{ item?.value }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+<!-- read only chips -->
+<ng-template #readOnlyChipsItem>
+  <mat-form-field appearance="outline">
+    <mat-chip-list>
+      <mat-chip
+        class="chip-border mat-chip-selected"
+        *ngFor="let item of chips"
+        [removable]="true"
+        selected
+        (removed)="removeChipItem(item)"
+        [color]="color"
+      >
+        <span class="chip-text">{{ item?.value }}</span>
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <mat-icon matSuffix>{{ iconName }}</mat-icon>
+  </mat-form-field>
+</ng-template>

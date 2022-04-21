@@ -1,0 +1,7 @@
+@use '~@angular/material' as mat;
+// theme for dialog component
+@mixin dialog-theme($theme) {
+  .warn-text {
+    color: map-get(map-get(mat.get-color-config($theme), 'warn'), default);
+  }
+}

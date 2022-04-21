@@ -1,0 +1,99 @@
+[
+  {
+    "text": "OR",
+    "locale": "en_US",
+    "code": "common.or",
+    "type": "LABEL"
+  },
+  {
+    "text": "Cancel",
+    "locale": "en_US",
+    "code": "common.cancel",
+    "type": "LABEL"
+  },
+  {
+    "text": "To",
+    "locale": "en_US",
+    "code": "email.to",
+    "type": "LABEL"
+  },
+  {
+    "text": "Subject",
+    "locale": "en_US",
+    "code": "email.subject",
+    "type": "LABEL"
+  },
+  {
+    "text": "Import Data",
+    "locale": "en_US",
+    "code": "email.importData",
+    "type": "LABEL"
+  },
+  {
+    "text": "Download Template",
+    "locale": "en_US",
+    "code": "email.downloadTemplate",
+    "type": "LABEL"
+  },
+  {
+    "text": "Send Invitation",
+    "locale": "en_US",
+    "code": "email.send",
+    "type": "LABEL"
+  },
+  {
+    "text": "Invalid file type",
+    "code": "email.importData.invalidFileType",
+    "locale": "en_US",
+    "type": "LABEL"
+  },
+  {
+    "text": "Confirm",
+    "locale": "en_US",
+    "code": "common.confirm",
+    "type": "LABEL"
+  },
+  {
+    "text": "Close",
+    "locale": "en_US",
+    "code": "common.close",
+    "type": "LABEL"
+  },
+
+  {
+    "text": "Just a small information.",
+    "locale": "en_US",
+    "code": "common.info",
+    "type": "LABEL"
+  },
+  {
+    "text": "Here goes Success Message",
+    "locale": "en_US",
+    "code": "common.success",
+    "type": "LABEL"
+  },
+  {
+    "text": "Here goes Error Message",
+    "locale": "en_US",
+    "code": "common.error",
+    "type": "LABEL"
+  },
+  {
+    "text": "Here goes Warn Message",
+    "locale": "en_US",
+    "code": "common.warn",
+    "type": "LABEL"
+  },
+  {
+    "text": "Delete File",
+    "locale": "en_US",
+    "code": "common.delete.title",
+    "type": "LABEL"
+  },
+  {
+    "text": "Are you sure you want to delete?",
+    "locale": "en_US",
+    "code": "common.delete.message",
+    "type": "LABEL"
+  }
+]

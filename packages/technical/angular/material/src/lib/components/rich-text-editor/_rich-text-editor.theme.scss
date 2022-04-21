@@ -1,0 +1,31 @@
+@use '~@angular/material' as mat;
+
+@mixin editor-theme($theme) {
+  .rich-editor:focus {
+    outline-color: map-get(
+      map-get(mat.get-color-config($theme), 'primary'),
+      default
+    );
+  }
+
+  .rich-editor-invalid {
+    outline-color: map-get(
+      map-get(mat.get-color-config($theme), 'warn'),
+      default
+    ) !important;
+    border-color: map-get(
+      map-get(mat.get-color-config($theme), 'warn'),
+      default
+    ) !important;
+  }
+
+  .editor-container-focused {
+    .editor-label {
+      color: map-get(map-get(mat.get-color-config($theme), 'primary'), default);
+    }
+
+    .editor-required-indicator {
+      color: map-get(map-get(mat.get-color-config($theme), 'warn'), default);
+    }
+  }
+}

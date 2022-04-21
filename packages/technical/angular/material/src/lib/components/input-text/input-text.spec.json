@@ -1,0 +1,116 @@
+{
+  "description": "Input text component which can be used for taking user inputs",
+  "inputs": [
+    {
+      "name": "label",
+      "type": "string",
+      "description": "label for the input control"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "placeHolder for the input control"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "description": "value which needs to be set to the input"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "description": "Defines whether the input is reauired or not. If true, Shows an indicator beside the label indicating it is an required property"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "description": "tells whether the input control is disabled"
+    },
+    {
+      "name": "readonly",
+      "type": "boolean",
+      "description": "tells whether user can edit or only read the value"
+    },
+    {
+      "name": "inputConfig",
+      "type": "object",
+      "description": "Defines the configurations for input element",
+      "properties": [
+        {
+          "name": "autocomplete",
+          "type": "string",
+          "description": "Hint for autofill feature. Supports only the autocomplete values of native input element."
+        }
+      ]
+    },
+    {
+      "name": "clear",
+      "type": "boolean",
+      "description": "shows a clear icon beside the input field, on the right side, to clear input"
+    },
+    {
+      "name": "uiConfig",
+      "type": "object",
+      "description": "Defines ui configurations for mat form field",
+      "properties": [
+        {
+          "name": "hideRequiredMarker",
+          "type": "boolean",
+          "description": "if true hides the * mark beside the label for required properties"
+        },
+        {
+          "name": "formFieldAppearance",
+          "type": "string",
+          "description": "defines the appearance of the mat form field.",
+          "permittedValues": ["legacy", "standard", "fill", "outline"]
+        }
+      ]
+    },
+    {
+      "name": "size",
+      "type": "string",
+      "description": "size of the input field",
+      "permittedValues": ["small", "medium", "large", "normal"],
+      "defaultValue": "normal"
+    },
+    {
+      "name": "prefix",
+      "type": "object",
+      "description": "prefixes content to the input field",
+      "properties": [
+        {
+          "name": "iconName",
+          "type": "string",
+          "description": "name of the icon which needs to be prefixed"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": "content which needs to be prefixed"
+        }
+      ]
+    },
+    {
+      "name": "suffix",
+      "type": "string",
+      "description": "suffixes content to the input field",
+      "properties": [
+        {
+          "name": "iconName",
+          "type": "string",
+          "description": "name of the icon which needs to be prefixed"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": "content which needs to be prefixed"
+        }
+      ]
+    }
+  ],
+  "output": {
+    "name": "value",
+    "type": "string",
+    "description": "value of the input element"
+  }
+}

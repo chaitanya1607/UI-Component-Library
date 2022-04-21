@@ -1,0 +1,7 @@
+@use '~@angular/material' as mat;
+
+@mixin form-errors($theme) {
+  .form-error-text {
+    color: map-get(map-get(mat.get-color-config($theme), 'warn'), default);
+  }
+}

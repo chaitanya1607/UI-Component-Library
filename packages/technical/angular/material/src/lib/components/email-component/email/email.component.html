@@ -1,0 +1,129 @@
+<section class="email-container">
+  <form #emailForm="ngForm">
+    <!-- To Field-->
+    <div class="email-to row align-items-center">
+
+      <!-- Chip input for to addresses -->
+      <label class="email-to-input-label col-1" for="email-to-input">
+        {{labelForToField}}
+      </label>
+      <app-chip-list class="email-to-input col-lg-6 col-md-6 col-sm-8" id="email-to-input"
+        [(ngModel)]="emailInput.toAddresses" name="toAddresses" [disabled]="!!emailInput?.addressesData">
+      </app-chip-list>
+
+      <!-- Menu for import data and download template in small devices -->
+      <div class="email-menu-sm col-3 text-align-center">
+        <div *ngIf="!emailInput?.addressesData; else emailWithImportDatasm">
+          <div>
+            <button mat-button [matMenuTriggerFor]="menu"><mat-icon>more_vertical</mat-icon></button>
+          </div>
+          <div class="email-import-data-file-error-msg" *ngIf="importFileErrorMsg">
+            <small>{{ importFileErrorMsg }}</small>
+          </div>
+        </div>
+
+        <ng-template #emailWithImportDatasm>
+          <div class="email-import-data-file row align-items-center">
+            <small class="email-import-data-file-name col-9 text-truncate">
+              {{emailInput?.addressesData?.name}}
+            </small>
+            <div class="col-3 ps-0">
+              <button class="email-import-data-file-remove-btn" mat-icon-button (click)="removeImportedDataFile()"
+                aria-label="Remove file">
+                <mat-icon class="email-import-data-file-remove-btn-icon">delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </ng-template>
+        
+        <mat-menu #menu="matMenu">
+          <div *ngIf="!emailInput?.addressesData" mat-menu-item>
+            <input #fileInputsm class="email-import-data-input-sm" type="file" [accept]="acceptedFileTypes"
+              (change)="onFileUpload($event)" />
+            <button mat-button class="email-import-data-btn-sm" id="email-import-data-btn-sm"
+               (click)="fileInputsm.click()">
+              {{ labelForImportDataBtn }}
+            </button>
+          </div>
+          <mat-divider></mat-divider>
+          <div class="email-download-template-sm text-align-center" mat-menu-item>
+            <a id="email-download-template-a-sm" [href]="emailConfig?.pathForDownloadTemplate" download>
+              {{labelForDownloadTemplateOption}}
+            </a>
+          </div>
+        </mat-menu>
+      </div>
+
+      <!-- import option for large and medium devices-->
+      <div class="email-import-data col-3 text-align-center">
+
+        <div *ngIf="!emailInput?.addressesData">
+          <input #fileInput class="email-import-data-input" type="file" [accept]="acceptedTypes"
+            (change)="onFileUpload($event)" />
+          <span class="me-3">{{ orLabel }}</span><button class="email-import-data-btn" id="email-import-data-btn"
+            mat-raised-button (click)="fileInput.click()">
+            {{ labelForImportDataBtn }}
+          </button>
+        </div>
+
+        <div class="email-import-data-file row align-items-center" *ngIf="emailInput?.addressesData">
+          <small class="email-import-data-file-name col-10 text-truncate">
+            <span>{{emailInput?.addressesData?.name}}</span>
+          </small>
+          <div class="col-2 ps-0">
+            <button class="email-import-data-file-remove-btn" mat-icon-button (click)="removeImportedDataFile()"
+              aria-label="Remove file">
+              <mat-icon class="email-import-data-file-remove-btn-icon">delete</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="email-import-data-file-error-msg" *ngIf="!emailInput?.addressesData && importFileErrorMsg">
+          <small>{{ importFileErrorMsg }}</small>
+        </div>
+      </div>
+
+      <!-- Dowmnload template for large and medium devices-->
+      <div class="email-download-template col-2 text-align-center">
+        <a id="email-download-template-a" [href]="emailConfig?.pathForDownloadTemplate" download>
+          {{labelForDownloadTemplateOption}}
+        </a>
+      </div>
+
+    </div>
+
+    <!-- subject -->
+    <div class="email-subject row align-items-center">
+      <label class="email-sub-input-label col-1" for="email-sub-input">{{
+        labelForSubjectField
+        }}</label>
+      <app-input-text [(ngModel)]="emailInput.subject" name="subject" class="email-sub-input col-lg-6 col-md-6 col-sm-8"
+        id="email-sub-input" [uiConfig]="uiConfigForInputComponent">
+      </app-input-text>
+    </div>
+
+    <!-- body -->
+    <div class="email-body mb-2">
+      <app-rich-text-editor [(ngModel)]="emailInput.body" [height]="'60vh'" name="body">
+      </app-rich-text-editor>
+    </div>
+
+    <!-- instructions -->
+    <div class="email-instructions mb-1" *ngIf="emailInstructions">
+      <small>{{ emailInstructions }}</small>
+    </div>
+
+    <!-- actions -->
+    <div class="email-actions d-flex justify-content-end">
+      <button id="cancel-email-btn" class="cancel-email-btn" class="me-4" mat-stroked-button
+        (click)="cancelSendingEmail()">
+        {{ cancelLabel }}
+      </button>
+      <button id="send-email-btn" class="send-email-btn" mat-raised-button (click)="sendEmail()"
+        [disabled]="isDataInvalid()">
+        {{ sendLabel }}
+      </button>
+    </div>
+
+  </form>
+</section>

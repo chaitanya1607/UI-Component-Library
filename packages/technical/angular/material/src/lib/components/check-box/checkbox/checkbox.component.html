@@ -1,0 +1,13 @@
+<mat-checkbox
+  [(ngModel)]="checked"
+  checked="checked"
+  [disabled]="disabled"
+  [labelPosition]="labelPosition"
+  (change)="checkBoxChanged($event)"
+  (blur)="onBlur()"
+  >{{ label }}
+</mat-checkbox>
+<app-form-control-errors
+  [control]="ngControl"
+  *ngIf="ngControl?.errors"
+></app-form-control-errors>

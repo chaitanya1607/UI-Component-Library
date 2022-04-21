@@ -1,0 +1,21 @@
+@use '~@angular/material/index' as mat;
+@use './components.theme' as components;
+
+@include mat.core();
+
+$primary: mat.define-palette(mat.$deep-purple-palette);
+$accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+
+$theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+    ),
+  )
+);
+
+@include mat.all-component-themes($theme);
+
+// add the component theme.
+@include components.apply-theme($theme);

@@ -1,0 +1,5 @@
+<div *ngIf="control.dirty && control.touched">
+  <span *ngFor="let error of control.errors | keyvalue" class="form-error-text">
+    {{ error.key }}
+  </span>
+</div>

@@ -1,0 +1,44 @@
+<div
+  class="editor-container"
+  [class]="doesEditorHasFocus() ? 'editor-container-focused' : ''"
+>
+  <div class="editor-label-container">
+    <label for="editor-content" class="editor-label" *ngIf="label">{{
+      label
+    }}</label
+    ><span class="editor-required-indicator" *ngIf="label && required">*</span>
+  </div>
+  <div *ngIf="!disabled; else disabledEditor"
+    class="rich-editor"
+    [class]="!!ngControl?.errors ? 'rich-editor-invalid' : ''"
+    id="editor-content"
+    contenteditable="true"
+    (keydown)="onKeyDown($event)"
+    [style]="'height:' + height"
+    (blur)="updateContent()"
+    [innerHTML]="value"
+    [attr.aria-invalid]="!!ngControl?.errors"
+    [attr.aria-required]="required"
+    (mouseover)="mouseOver()"
+    (mouseout)="mouseOut()"
+  ></div>
+  <ng-template #disabledEditor>
+    <div
+    class="rich-editor"
+    [class]="!!ngControl?.errors ? 'rich-editor-invalid' : ''"
+    id="editor-content"
+    (keydown)="onKeyDown($event)"
+    [style]="'height:' + height"
+    (blur)="updateContent()"
+    [innerHTML]="value"
+    [attr.aria-invalid]="!!ngControl?.errors"
+    [attr.aria-required]="required"
+    (mouseover)="mouseOver()"
+    (mouseout)="mouseOut()"
+  ></div>
+  </ng-template>
+  <app-form-control-errors
+    [control]="ngControl"
+    *ngIf="ngControl?.errors"
+  ></app-form-control-errors>
+</div>

@@ -1,0 +1,14 @@
+<div class=" dialog">
+    <div class="title">
+        <h1 mat-dialog-title>{{ dialogData.titleKey | contentFor}}</h1>
+    </div>
+    <div mat-dialog-content class="info-message">
+        <p>{{dialogData.messageKey |contentFor}}</p>
+    </div>
+    <div mat-dialog-actions class="actions">
+        <button mat-raised-button class="cancle" color="warn" (click)="cancel()">{{
+            dialogData.cancelButtonTextKey | contentFor}}</button>
+        <button mat-raised-button class="confirm" color="primary" (click)="confirm()">{{
+            dialogData.confirmButtonTextKey | contentFor}}</button>
+    </div>
+</div>

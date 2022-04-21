@@ -1,0 +1,55 @@
+{
+  "description": "Editor component",
+  "inputs": [
+    {
+      "name": "value",
+      "description": "initial value of the editor",
+      "type": "string"
+    },
+    {
+      "name": "heght",
+      "description": "height of the editor. Supports all units as that of css height property",
+      "type": "string"
+    }
+  ],
+  "methods": [
+    {
+      "name": "onKeyDown",
+      "description": "Method which will be called whenever a key is down. It will add a tab space on clikc of tab key",
+      "parameters": [
+        {
+          "name": "event",
+          "description": "keyboardvent",
+          "type": "KeyBoardEvent"
+        }
+      ],
+      "returns": null
+    },
+    {
+      "name": "updateContent",
+      "description": "content of the editor will be binded to the value",
+      "parameters": [],
+      "returns": null
+    },
+    {
+      "name": "safeHTML",
+      "description": "Bypasses the sanitization done by angular and returns the value",
+      "parameters": [
+        {
+          "name": "unSafeValue",
+          "description": "unSafeValue of the editor",
+          "type": "string"
+        }
+      ],
+      "returns": {
+        "description": "value after bypassing the sanitization",
+        "type": "string"
+      }
+    }
+  ],
+  "output": {
+    "name": "value",
+    "description": "value of the editor",
+    "type": "string"
+  }
+}

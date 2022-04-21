@@ -1,0 +1,50 @@
+{
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "ui-components",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook",
+          "compodoc"
+        ]
+      }
+    }
+  },
+  "workspaceLayout": {
+    "appsDir": "packages",
+    "libsDir": "packages"
+  },
+  "projects": {
+    "utilities-angular-utils": {
+      "tags": []
+    },
+    "utilities-angular-web-utils": {
+      "tags": []
+    },
+    "technical-angular-material": {
+      "tags": []
+    },
+    "technical-angular-material-e2e": {
+      "tags": [],
+      "implicitDependencies": ["technical-angular-material"]
+    },
+    "technical-angular-services": {
+      "tags": []
+    }
+  }
+}

@@ -1,0 +1,258 @@
+{
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "technical-angular-material",
+  "generators": {
+    "@nrwl/angular:application": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {}
+  },
+  "projects": {
+    "utilities-angular-utils": {
+      "projectType": "library",
+      "root": "packages/utilities/angular/utils",
+      "sourceRoot": "packages/utilities/angular/utils/src",
+      "prefix": "ui-components",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:package",
+          "outputs": ["dist/packages/utilities/angular/utils"],
+          "options": {
+            "project": "packages/utilities/angular/utils/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/utilities/angular/utils/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/utilities/angular/utils/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/utilities/angular/utils"],
+          "options": {
+            "jestConfig": "packages/utilities/angular/utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/utilities/angular/utils/src/**/*.ts",
+              "packages/utilities/angular/utils/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "utilities-angular-web-utils": {
+      "projectType": "library",
+      "root": "packages/utilities/angular/web-utils",
+      "sourceRoot": "packages/utilities/angular/web-utils/src",
+      "prefix": "ui-components",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:package",
+          "outputs": ["dist/packages/utilities/angular/web-utils"],
+          "options": {
+            "project": "packages/utilities/angular/web-utils/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/utilities/angular/web-utils/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/utilities/angular/web-utils/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/utilities/angular/web-utils"],
+          "options": {
+            "jestConfig": "packages/utilities/angular/web-utils/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/utilities/angular/web-utils/src/**/*.ts",
+              "packages/utilities/angular/web-utils/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "technical-angular-material": {
+      "projectType": "library",
+      "root": "packages/technical/angular/material",
+      "sourceRoot": "packages/technical/angular/material/src",
+      "prefix": "app",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:package",
+          "outputs": ["dist/packages/technical/angular/material"],
+          "options": {
+            "project": "packages/technical/angular/material/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/technical/angular/material/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/technical/angular/material/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/technical/angular/material"],
+          "options": {
+            "jestConfig": "packages/technical/angular/material/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/technical/angular/material/src/**/*.ts",
+              "packages/technical/angular/material/src/**/*.html"
+            ]
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "packages/technical/angular/material/.storybook"
+            },
+            "staticDir": ["packages/technical/angular/material/src"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/foundational-material",
+            "config": {
+              "configFolder": "packages/technical/angular/material/.storybook"
+            },
+            "staticDir": ["packages/technical/angular/material/src"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "compodoc": {
+          "executor": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "packages/technical/angular/material/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/foundational-angular-material"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json",
+              "outputPath": "packages/technical/angular/material/.storybook"
+            }
+          }
+        }
+      }
+    },
+    "technical-angular-material-e2e": {
+      "root": "packages/technical/angular/material-e2e",
+      "sourceRoot": "packages/technical/angular/material-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "packages/technical/angular/material-e2e/cypress.json",
+            "tsConfig": "packages/technical/angular/material-e2e/tsconfig.e2e.json",
+            "devServerTarget": "technical-angular-material:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "technical-angular-material:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/technical/angular/material-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    },
+    "technical-angular-services": {
+      "projectType": "library",
+      "root": "packages/technical/angular/services",
+      "sourceRoot": "packages/technical/angular/services/src",
+      "prefix": "app",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:package",
+          "outputs": ["dist/packages/technical/angular/services"],
+          "options": {
+            "project": "packages/technical/angular/services/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/technical/angular/services/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/technical/angular/services/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/technical/angular/services"],
+          "options": {
+            "jestConfig": "packages/technical/angular/services/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/technical/angular/services/src/**/*.ts",
+              "packages/technical/angular/services/src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

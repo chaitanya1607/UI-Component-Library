@@ -1,0 +1,47 @@
+{
+  "description": "Chip List Item Component which can be used to show the list of chips and can be edited to add new chips",
+  "inputs": [
+    {
+      "name": "chips",
+      "type": "array",
+      "description": "contains the list of chips that needs to be shown on the component"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "description": "Defines whether new chip item can be added or not"
+    },
+    {
+      "name": "options",
+      "type": "array",
+      "description": "contains the list of chips that can be shown as an option and can be selected from that option list"
+    },
+    {
+      "name": "iconName",
+      "type": "string",
+      "description": "suffix icon that needs to be added to the chip item component"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "description": "plsceholder for the input component when chips are editable"
+    },
+    {
+      "name": "color",
+      "type": "string",
+      "description": "to specify the color for the chips"
+    }
+  ],
+  "output": [
+    {
+      "name": "onAdd",
+      "type": "array",
+      "description": "list of updated chips item emitted"
+    },
+    {
+      "name": "onRemove",
+      "type": "array",
+      "description": "list of updated chips item emitted"
+    }
+  ]
+}

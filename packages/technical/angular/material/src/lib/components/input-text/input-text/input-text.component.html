@@ -1,0 +1,55 @@
+<div class="input-text-container">
+  <mat-form-field
+    [hideRequiredMarker]="uiConfig?.hideRequiredMarker"
+    [class.mat-form-field-invalid]="ngControl?.errors"
+    [appearance]="uiConfig?.formFieldAppearance"
+  >
+    <mat-label>{{ label }}</mat-label>
+
+    <input
+      matInput
+      [placeholder]="placeholder ? placeholder : ''"
+      [(ngModel)]="value"
+      type="text"
+      [disabled]="disabled"
+      [required]="required"
+      [autocomplete]="
+        inputConfig?.autocomplete ? inputConfig?.autocomplete : 'off'
+      "
+      [readonly]="readonly"
+      [attr.aria-invalid]="ngControl?.errors"
+      (blur)="onBlur()"
+    />
+
+    <!-- prefix for input element -->
+    <mat-icon matPrefix *ngIf="prefix?.iconName; else prefixBlock">{{
+      prefix?.iconName
+    }}</mat-icon>
+    <ng-template #prefixBlock>
+      <span matPrefix *ngIf="prefix?.text">{{ prefix?.text }}&nbsp;</span>
+    </ng-template>
+
+    <!-- Suffix for input element -->
+    <button
+      *ngIf="clear && value; else customSuffixBlock"
+      matSuffix
+      mat-icon-button
+      aria-label="Clear"
+      (click)="value = ''"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+    <ng-template #customSuffixBlock>
+      <mat-icon matSuffix *ngIf="suffix?.iconName; else suffixContentBlock">{{
+        suffix?.iconName
+      }}</mat-icon>
+      <ng-template #suffixContentBlock>
+        <span matSuffix *ngIf="suffix?.text">{{ suffix?.text }}</span>
+      </ng-template>
+    </ng-template>
+  </mat-form-field>
+  <app-form-control-errors
+    [control]="ngControl"
+    *ngIf="ngControl?.errors"
+  ></app-form-control-errors>
+</div>

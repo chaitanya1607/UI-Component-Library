@@ -1,0 +1,15 @@
+<div class="dialog">
+    <div class="icon">
+        <mat-icon [color]="iconColor">{{dialogData.icon}}</mat-icon>
+    </div>
+    <div class="info-message">
+        <div mat-dialog-content>
+            <p [class.warn-text]="dialogData.type=='Error' || dialogData.type=='Warn'">{{dialogData.messageKey |
+                contentFor}}</p>
+        </div>
+    </div>
+    <div mat-dialog-actions class="actions">
+        <button mat-raised-button class="confirm" color="primary" (click)="confirm()">{{
+            dialogData.closeButtonTextKey | contentFor}}</button>
+    </div>
+</div>

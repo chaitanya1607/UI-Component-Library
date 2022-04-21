@@ -1,0 +1,147 @@
+<div class="select-label">
+  <label>{{ label }}</label>
+</div>
+<div *ngIf="!isSearchFilter; else searchFilter">
+  <!-- template without search filter -->
+  <mat-form-field
+    [appearance]="config?.appearance ? config.appearance : 'outline'"
+  >
+    <mat-select
+      placeholder="{{ placeholder ? placeholder : '' }}"
+      [multiple]="multiple"
+      [formControl]="selectedControl"
+      (selectionChange)="onSelectionChange($event)"
+    >
+      <!-- basic select component and checks if virtual scroll is enabled -->
+      <div *ngIf="!isOptionGroupAvailable; else optionGroup">
+        <div *ngIf="config?.isVirtualScroll; else noVirtualScroll">
+          <ng-container *ngTemplateOutlet="virtualScroll"></ng-container>
+        </div>
+        <ng-template #noVirtualScroll>
+          <mat-option
+            *ngFor="let data of dataSource"
+            [value]="data"
+            [disabled]="data?.disable"
+          >
+            {{ data.name }}
+          </mat-option>
+        </ng-template>
+      </div>
+      <!-- group item if it has children and checks for virtual scroll -->
+      <ng-template #optionGroup>
+        <div *ngIf="config?.isVirtualScroll; else noVirtualScroll">
+          <cdk-virtual-scroll-viewport
+            [itemSize]="config?.itemSize"
+            class="virtual-scroll"
+          >
+            <mat-optgroup
+              *cdkVirtualFor="let data of dataSource"
+              [label]="data.name"
+              [disabled]="data?.disable"
+            >
+              <mat-option
+                *ngFor="let children of data.children"
+                [value]="children"
+              >
+                {{ children?.name }}
+              </mat-option>
+            </mat-optgroup>
+          </cdk-virtual-scroll-viewport>
+        </div>
+        <ng-template #noVirtualScroll>
+          <mat-optgroup
+            *ngFor="let data of dataSource"
+            [label]="data.name"
+            [disabled]="data?.disable"
+          >
+            <mat-option
+              *ngFor="let children of data.children"
+              [value]="children"
+            >
+              {{ children?.name }}
+            </mat-option>
+          </mat-optgroup>
+        </ng-template>
+      </ng-template>
+      <!-- virtual scroll template -->
+      <ng-template #virtualScroll>
+        <cdk-virtual-scroll-viewport
+          [itemSize]="config?.itemSize"
+          class="virtual-scroll"
+          (scrolledIndexChange)="scrollToSelectedVirtualScrollElement($event)"
+        >
+          <mat-option *cdkVirtualFor="let data of dataSource" [value]="data">
+            {{ data.name }}
+          </mat-option>
+        </cdk-virtual-scroll-viewport>
+      </ng-template>
+    </mat-select>
+  </mat-form-field>
+</div>
+<!-- template with search filter -->
+<ng-template #searchFilter>
+  <!-- includes virtual scroll -->
+  <div *ngIf="config?.isVirtualScroll; else noVirtualScroll">
+    <mat-form-field
+      [appearance]="config?.appearance ? config.appearance : 'outline'"
+    >
+      <input
+        type="text"
+        placeholder="{{ placeholder ? placeholder : 'placefolder text' }}"
+        matInput
+        [formControl]="searchValue"
+        [matAutocomplete]="auto"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayFn"
+        autoActiveFirstOption
+        (optionSelected)="selectedOptionFromFilter($event)"
+      >
+        <cdk-virtual-scroll-viewport
+          [itemSize]="config?.itemSize"
+          class="virtual-scroll"
+          (scrolledIndexChange)="
+            scrollToSelectedVirtualScrollElementForFilter($event)
+          "
+        >
+          <mat-option
+            *cdkVirtualFor="let data of filteredOptions | async"
+            [value]="data"
+          >
+            {{ data.name }}
+          </mat-option>
+        </cdk-virtual-scroll-viewport>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <!-- without virtual scroll -->
+  <ng-template #noVirtualScroll>
+    <mat-form-field
+      [appearance]="config?.appearance ? config.appearance : 'outline'"
+    >
+      <input
+        type="text"
+        placeholder="{{ placeholder ? placeholder : '' }}"
+        matInput
+        [formControl]="searchValue"
+        [matAutocomplete]="auto"
+      />
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayFn"
+        autoActiveFirstOption
+        (optionSelected)="selectedOptionFromFilter($event)"
+      >
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option"
+        >
+          {{ option.name }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </ng-template>
+</ng-template>

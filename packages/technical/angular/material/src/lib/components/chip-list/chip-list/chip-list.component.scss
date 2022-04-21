@@ -1,0 +1,14 @@
+.chip-border {
+  border-radius: 5px;
+}
+
+.mat-form-field {
+  width: 100%;
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0.5em;
+    .mat-form-field-infix {
+      padding: 0.6em 0 0.6em 0;
+      border-top: 0.6em solid transparent;
+    }
+  }
+}

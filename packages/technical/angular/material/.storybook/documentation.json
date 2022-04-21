@@ -1,0 +1,1017 @@
+{
+  "pipes": [],
+  "interfaces": [],
+  "injectables": [],
+  "classes": [
+    {
+      "name": "ColumnConfig",
+      "id": "class-ColumnConfig-8337840a915e61e467794b615b9f164a",
+      "file": "src/lib/components/table/table.model.ts",
+      "type": "class",
+      "sourceCode": "export class TableConfig {\r\n  columns: ColumnConfig[];\r\n\r\n  /**\r\n   * does the table have pagination. defaults to false\r\n   */\r\n  hasPagination?: boolean;\r\n\r\n  /**\r\n   * the pagination config for table. used only if `hasPagination` is `true`\r\n   *\r\n   * TODO Add event\r\n   */\r\n  pagination?: PaginationOptions;\r\n\r\n  /**\r\n   * the sort config for the table\r\n   */\r\n  sortOptions?: SortingOptions;\r\n}\r\n\r\nexport class ColumnConfig {\r\n  /**\r\n   * the column heading\r\n   * TODO: title\r\n   */\r\n  title: string;\r\n  /**\r\n   * the name of the column.\r\n   * #### Used for accessing the value of a cell from the data object if no accessor is passed\r\n   */\r\n  name: string;\r\n  /**\r\n   * is the column hidden\r\n   */\r\n  hidden?: boolean;\r\n\r\n  /**\r\n   * is the column sortable\r\n   */\r\n  sortable?: boolean;\r\n  /**\r\n   * a custom sort function. the value of the cells under comparision will be passed.\r\n   * The sort fucntion is expected to\r\n   * 1. return -1 if a < b\r\n   * 2. return  0 if a = b\r\n   * 3. return  1 in other cases\r\n   *\r\n   * TODO add a event\r\n   */\r\n  sortFunction?: (a: any, b: any) => number;\r\n\r\n  /**\r\n   * Custom data accessor for retreiving a cell value from a object. by default the column name is used\r\n   * for retreiving the value\r\n   */\r\n  dataAccessor?: (rowValue: any) => any;\r\n}\r\n\r\nexport class PaginationOptions {\r\n  /**\r\n   * the page sizes applicable\r\n   */\r\n  pageSizes: number[];\r\n\r\n  /**\r\n   * the total number of items. defaults to the number of items given to mat table data\r\n   */\r\n  totalItems?: number;\r\n}\r\n\r\n/**\r\n * Table level sorting options\r\n */\r\nexport class SortingOptions {\r\n  /**\r\n   * the name of column that is sorted by default in the table\r\n   */\r\n  defaultSortedColumn?: string;\r\n  /**\r\n   * the sort order for the `defaultSortedColumn`\r\n   */\r\n  defaultSortDirection?: SortDirection;\r\n}\r\n\r\nexport class TableViewChange {\r\n  /**\r\n   * the current paging status if applicable\r\n   */\r\n  page?: TablePageState;\r\n\r\n  /**\r\n   * the current sort status if applicable\r\n   */\r\n  sort?: TableSortState;\r\n}\r\n\r\nexport class TablePageState {\r\n  pageSize?: number;\r\n  pageIndex: number;\r\n}\r\n\r\nexport class TableSortState {\r\n  /**\r\n   * the name of the column that is currently sorted. undefined if none sorted\r\n   */\r\n  sortedColumn?: string;\r\n  sortDirection?: SortDirection;\r\n}\r\n\r\nexport type SortDirection = 'asc' | 'desc';\r\n",
+      "properties": [
+        {
+          "name": "dataAccessor",
+          "type": "function",
+          "optional": true,
+          "description": "<p>Custom data accessor for retreiving a cell value from a object. by default the column name is used\nfor retreiving the value</p>\n",
+          "line": 57
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "optional": true,
+          "description": "<p>is the column hidden</p>\n",
+          "line": 36
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "optional": false,
+          "description": "<p>the name of the column.</p>\n<h4 id=\"used-for-accessing-the-value-of-a-cell-from-the-data-object-if-no-accessor-is-passed\">Used for accessing the value of a cell from the data object if no accessor is passed</h4>\n",
+          "line": 32
+        },
+        {
+          "name": "sortable",
+          "type": "boolean",
+          "optional": true,
+          "description": "<p>is the column sortable</p>\n",
+          "line": 41
+        },
+        {
+          "name": "sortFunction",
+          "type": "function",
+          "optional": true,
+          "description": "<p>a custom sort function. the value of the cells under comparision will be passed.\nThe sort fucntion is expected to</p>\n<ol>\n<li>return -1 if a &lt; b</li>\n<li>return  0 if a = b</li>\n<li>return  1 in other cases</li>\n</ol>\n<p>TODO add a event</p>\n",
+          "line": 51
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "optional": false,
+          "description": "<p>the column heading\nTODO: title</p>\n",
+          "line": 27
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    },
+    {
+      "name": "InputConfig",
+      "id": "class-InputConfig-5049159be22d77478b6817cb4e782a2d",
+      "file": "src/lib/components/input-text/input-text.model.ts",
+      "type": "class",
+      "sourceCode": "import { MatFormFieldAppearance } from \"@angular/material/form-field\";\r\n\r\nexport class InputConfig {\r\n    /**\r\n     * @description autocomplete for input. Supports the values of standard input element.\r\n     */\r\n    autocomplete?: string;\r\n}\r\n\r\nexport class PrefixOrSuffixContent {\r\n    iconName?: string;\r\n    text?: string;\r\n}\r\n\r\nexport class UIConfig {\r\n    /**\r\n     * @description If true removes the required indicator\r\n     */\r\n    hideRequiredMarker?: boolean;\r\n\r\n    /**\r\n     * @description The form-field appearance style\r\n     */\r\n    formFieldAppearance?: MatFormFieldAppearance;\r\n}\r\n\r\nexport type InputSize = 'small' | 'medium' | 'large' | 'normal';",
+      "properties": [
+        {
+          "name": "autocomplete",
+          "type": "string",
+          "optional": true,
+          "description": "",
+          "line": 7,
+          "jsdoctags": [
+            {
+              "pos": 118,
+              "end": 131,
+              "flags": 0,
+              "kind": 288,
+              "atToken": {
+                "pos": 118,
+                "end": 119,
+                "flags": 0,
+                "kind": 57
+              },
+              "tagName": {
+                "pos": 119,
+                "end": 130,
+                "flags": 0,
+                "escapedText": "description"
+              },
+              "comment": "<p>autocomplete for input. Supports the values of standard input element.</p>\n"
+            }
+          ]
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    },
+    {
+      "name": "PaginatedDataSource",
+      "id": "class-PaginatedDataSource-ba33b0f3fdbf631ed2437fa59f1072da",
+      "file": "src/lib/components/table/paginated-data-source.ts",
+      "type": "class",
+      "sourceCode": "import { DataSource } from '@angular/cdk/collections';\r\nimport { MatPaginator } from '@angular/material/paginator';\r\nimport { MatSort } from '@angular/material/sort';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\n\r\nexport class PaginatedDataSource<T> implements DataSource<T> {\r\n\r\n  private data$: BehaviorSubject<T[]>;\r\n  public totalItemsCount: number;\r\n\r\n  constructor(length: number, initialData?: Array<any>) {\r\n    this.totalItemsCount = length;\r\n    this.data$ = new BehaviorSubject(initialData ?? []);\r\n  }\r\n\r\n  connect(): Observable<T[]> {\r\n    return this.data$.asObservable();\r\n  }\r\n\r\n  disconnect(): void {\r\n    this.data$.complete();\r\n  }\r\n\r\n  set data(data: T[]) {\r\n    this.data$.next(data);\r\n  }\r\n\r\n  set paginator(paginator: MatPaginator) {\r\n    // no op\r\n  }\r\n\r\n  set sort(sort: MatSort) {\r\n    // no op\r\n  }\r\n\r\n  set sortData(fn: (a: T[], b: MatSort) => number) {\r\n    // no op\r\n  }\r\n}\r\n",
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "args": [
+          {
+            "name": "length",
+            "type": "number"
+          },
+          {
+            "name": "initialData",
+            "type": "Array<any>",
+            "optional": true
+          }
+        ],
+        "line": 9,
+        "jsdoctags": [
+          {
+            "name": "length",
+            "type": "number",
+            "tagName": {
+              "text": "param"
+            }
+          },
+          {
+            "name": "initialData",
+            "type": "Array<any>",
+            "optional": true,
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
+      },
+      "properties": [
+        {
+          "name": "totalItemsCount",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 9,
+          "modifierKind": [114]
+        }
+      ],
+      "methods": [
+        {
+          "name": "connect",
+          "args": [],
+          "optional": false,
+          "returnType": "Observable<T[]>",
+          "typeParameters": [],
+          "line": 16
+        },
+        {
+          "name": "disconnect",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 20
+        }
+      ],
+      "indexSignatures": [],
+      "accessors": {
+        "data": {
+          "name": "data",
+          "setSignature": {
+            "name": "data",
+            "type": "void",
+            "args": [
+              {
+                "name": "data",
+                "type": "[]"
+              }
+            ],
+            "returnType": "void",
+            "line": 24,
+            "jsdoctags": [
+              {
+                "name": "data",
+                "type": "[]",
+                "tagName": {
+                  "text": "param"
+                }
+              }
+            ]
+          }
+        },
+        "paginator": {
+          "name": "paginator",
+          "setSignature": {
+            "name": "paginator",
+            "type": "void",
+            "args": [
+              {
+                "name": "paginator",
+                "type": ""
+              }
+            ],
+            "returnType": "void",
+            "line": 28,
+            "jsdoctags": [
+              {
+                "name": "paginator",
+                "type": "",
+                "tagName": {
+                  "text": "param"
+                }
+              }
+            ]
+          }
+        },
+        "sort": {
+          "name": "sort",
+          "setSignature": {
+            "name": "sort",
+            "type": "void",
+            "args": [
+              {
+                "name": "sort",
+                "type": ""
+              }
+            ],
+            "returnType": "void",
+            "line": 32,
+            "jsdoctags": [
+              {
+                "name": "sort",
+                "type": "",
+                "tagName": {
+                  "text": "param"
+                }
+              }
+            ]
+          }
+        },
+        "sortData": {
+          "name": "sortData",
+          "setSignature": {
+            "name": "sortData",
+            "type": "void",
+            "args": [
+              {
+                "name": "fn",
+                "type": "function"
+              }
+            ],
+            "returnType": "void",
+            "line": 36,
+            "jsdoctags": [
+              {
+                "name": "fn",
+                "type": "function",
+                "tagName": {
+                  "text": "param"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": [],
+      "implements": ["DataSource"]
+    },
+    {
+      "name": "PaginationOptions",
+      "id": "class-PaginationOptions-8337840a915e61e467794b615b9f164a",
+      "file": "src/lib/components/table/table.model.ts",
+      "type": "class",
+      "sourceCode": "export class TableConfig {\r\n  columns: ColumnConfig[];\r\n\r\n  /**\r\n   * does the table have pagination. defaults to false\r\n   */\r\n  hasPagination?: boolean;\r\n\r\n  /**\r\n   * the pagination config for table. used only if `hasPagination` is `true`\r\n   *\r\n   * TODO Add event\r\n   */\r\n  pagination?: PaginationOptions;\r\n\r\n  /**\r\n   * the sort config for the table\r\n   */\r\n  sortOptions?: SortingOptions;\r\n}\r\n\r\nexport class ColumnConfig {\r\n  /**\r\n   * the column heading\r\n   * TODO: title\r\n   */\r\n  title: string;\r\n  /**\r\n   * the name of the column.\r\n   * #### Used for accessing the value of a cell from the data object if no accessor is passed\r\n   */\r\n  name: string;\r\n  /**\r\n   * is the column hidden\r\n   */\r\n  hidden?: boolean;\r\n\r\n  /**\r\n   * is the column sortable\r\n   */\r\n  sortable?: boolean;\r\n  /**\r\n   * a custom sort function. the value of the cells under comparision will be passed.\r\n   * The sort fucntion is expected to\r\n   * 1. return -1 if a < b\r\n   * 2. return  0 if a = b\r\n   * 3. return  1 in other cases\r\n   *\r\n   * TODO add a event\r\n   */\r\n  sortFunction?: (a: any, b: any) => number;\r\n\r\n  /**\r\n   * Custom data accessor for retreiving a cell value from a object. by default the column name is used\r\n   * for retreiving the value\r\n   */\r\n  dataAccessor?: (rowValue: any) => any;\r\n}\r\n\r\nexport class PaginationOptions {\r\n  /**\r\n   * the page sizes applicable\r\n   */\r\n  pageSizes: number[];\r\n\r\n  /**\r\n   * the total number of items. defaults to the number of items given to mat table data\r\n   */\r\n  totalItems?: number;\r\n}\r\n\r\n/**\r\n * Table level sorting options\r\n */\r\nexport class SortingOptions {\r\n  /**\r\n   * the name of column that is sorted by default in the table\r\n   */\r\n  defaultSortedColumn?: string;\r\n  /**\r\n   * the sort order for the `defaultSortedColumn`\r\n   */\r\n  defaultSortDirection?: SortDirection;\r\n}\r\n\r\nexport class TableViewChange {\r\n  /**\r\n   * the current paging status if applicable\r\n   */\r\n  page?: TablePageState;\r\n\r\n  /**\r\n   * the current sort status if applicable\r\n   */\r\n  sort?: TableSortState;\r\n}\r\n\r\nexport class TablePageState {\r\n  pageSize?: number;\r\n  pageIndex: number;\r\n}\r\n\r\nexport class TableSortState {\r\n  /**\r\n   * the name of the column that is currently sorted. undefined if none sorted\r\n   */\r\n  sortedColumn?: string;\r\n  sortDirection?: SortDirection;\r\n}\r\n\r\nexport type SortDirection = 'asc' | 'desc';\r\n",
+      "properties": [
+        {
+          "name": "pageSizes",
+          "type": "number[]",
+          "optional": false,
+          "description": "<p>the page sizes applicable</p>\n",
+          "line": 64
+        },
+        {
+          "name": "totalItems",
+          "type": "number",
+          "optional": true,
+          "description": "<p>the total number of items. defaults to the number of items given to mat table data</p>\n",
+          "line": 69
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    },
+    {
+      "name": "PrefixOrSuffixContent",
+      "id": "class-PrefixOrSuffixContent-5049159be22d77478b6817cb4e782a2d",
+      "file": "src/lib/components/input-text/input-text.model.ts",
+      "type": "class",
+      "sourceCode": "import { MatFormFieldAppearance } from \"@angular/material/form-field\";\r\n\r\nexport class InputConfig {\r\n    /**\r\n     * @description autocomplete for input. Supports the values of standard input element.\r\n     */\r\n    autocomplete?: string;\r\n}\r\n\r\nexport class PrefixOrSuffixContent {\r\n    iconName?: string;\r\n    text?: string;\r\n}\r\n\r\nexport class UIConfig {\r\n    /**\r\n     * @description If true removes the required indicator\r\n     */\r\n    hideRequiredMarker?: boolean;\r\n\r\n    /**\r\n     * @description The form-field appearance style\r\n     */\r\n    formFieldAppearance?: MatFormFieldAppearance;\r\n}\r\n\r\nexport type InputSize = 'small' | 'medium' | 'large' | 'normal';",
+      "properties": [
+        {
+          "name": "iconName",
+          "type": "string",
+          "optional": true,
+          "description": "",
+          "line": 11
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "optional": true,
+          "description": "",
+          "line": 12
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    },
+    {
+      "name": "SortingOptions",
+      "id": "class-SortingOptions-8337840a915e61e467794b615b9f164a",
+      "file": "src/lib/components/table/table.model.ts",
+      "type": "class",
+      "sourceCode": "export class TableConfig {\r\n  columns: ColumnConfig[];\r\n\r\n  /**\r\n   * does the table have pagination. defaults to false\r\n   */\r\n  hasPagination?: boolean;\r\n\r\n  /**\r\n   * the pagination config for table. used only if `hasPagination` is `true`\r\n   *\r\n   * TODO Add event\r\n   */\r\n  pagination?: PaginationOptions;\r\n\r\n  /**\r\n   * the sort config for the table\r\n   */\r\n  sortOptions?: SortingOptions;\r\n}\r\n\r\nexport class ColumnConfig {\r\n  /**\r\n   * the column heading\r\n   * TODO: title\r\n   */\r\n  title: string;\r\n  /**\r\n   * the name of the column.\r\n   * #### Used for accessing the value of a cell from the data object if no accessor is passed\r\n   */\r\n  name: string;\r\n  /**\r\n   * is the column hidden\r\n   */\r\n  hidden?: boolean;\r\n\r\n  /**\r\n   * is the column sortable\r\n   */\r\n  sortable?: boolean;\r\n  /**\r\n   * a custom sort function. the value of the cells under comparision will be passed.\r\n   * The sort fucntion is expected to\r\n   * 1. return -1 if a < b\r\n   * 2. return  0 if a = b\r\n   * 3. return  1 in other cases\r\n   *\r\n   * TODO add a event\r\n   */\r\n  sortFunction?: (a: any, b: any) => number;\r\n\r\n  /**\r\n   * Custom data accessor for retreiving a cell value from a object. by default the column name is used\r\n   * for retreiving the value\r\n   */\r\n  dataAccessor?: (rowValue: any) => any;\r\n}\r\n\r\nexport class PaginationOptions {\r\n  /**\r\n   * the page sizes applicable\r\n   */\r\n  pageSizes: number[];\r\n\r\n  /**\r\n   * the total number of items. defaults to the number of items given to mat table data\r\n   */\r\n  totalItems?: number;\r\n}\r\n\r\n/**\r\n * Table level sorting options\r\n */\r\nexport class SortingOptions {\r\n  /**\r\n   * the name of column that is sorted by default in the table\r\n   */\r\n  defaultSortedColumn?: string;\r\n  /**\r\n   * the sort order for the `defaultSortedColumn`\r\n   */\r\n  defaultSortDirection?: SortDirection;\r\n}\r\n\r\nexport class TableViewChange {\r\n  /**\r\n   * the current paging status if applicable\r\n   */\r\n  page?: TablePageState;\r\n\r\n  /**\r\n   * the current sort status if applicable\r\n   */\r\n  sort?: TableSortState;\r\n}\r\n\r\nexport class TablePageState {\r\n  pageSize?: number;\r\n  pageIndex: number;\r\n}\r\n\r\nexport class TableSortState {\r\n  /**\r\n   * the name of the column that is currently sorted. undefined if none sorted\r\n   */\r\n  sortedColumn?: string;\r\n  sortDirection?: SortDirection;\r\n}\r\n\r\nexport type SortDirection = 'asc' | 'desc';\r\n",
+      "properties": [
+        {
+          "name": "defaultSortDirection",
+          "type": "SortDirection",
+          "optional": true,
+          "description": "<p>the sort order for the <code>defaultSortedColumn</code></p>\n",
+          "line": 83
+        },
+        {
+          "name": "defaultSortedColumn",
+          "type": "string",
+          "optional": true,
+          "description": "<p>the name of column that is sorted by default in the table</p>\n",
+          "line": 79
+        }
+      ],
+      "description": "<p>Table level sorting options</p>\n",
+      "rawdescription": "Table level sorting options",
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    },
+    {
+      "name": "TableConfig",
+      "id": "class-TableConfig-8337840a915e61e467794b615b9f164a",
+      "file": "src/lib/components/table/table.model.ts",
+      "type": "class",
+      "sourceCode": "export class TableConfig {\r\n  columns: ColumnConfig[];\r\n\r\n  /**\r\n   * does the table have pagination. defaults to false\r\n   */\r\n  hasPagination?: boolean;\r\n\r\n  /**\r\n   * the pagination config for table. used only if `hasPagination` is `true`\r\n   *\r\n   * TODO Add event\r\n   */\r\n  pagination?: PaginationOptions;\r\n\r\n  /**\r\n   * the sort config for the table\r\n   */\r\n  sortOptions?: SortingOptions;\r\n}\r\n\r\nexport class ColumnConfig {\r\n  /**\r\n   * the column heading\r\n   * TODO: title\r\n   */\r\n  title: string;\r\n  /**\r\n   * the name of the column.\r\n   * #### Used for accessing the value of a cell from the data object if no accessor is passed\r\n   */\r\n  name: string;\r\n  /**\r\n   * is the column hidden\r\n   */\r\n  hidden?: boolean;\r\n\r\n  /**\r\n   * is the column sortable\r\n   */\r\n  sortable?: boolean;\r\n  /**\r\n   * a custom sort function. the value of the cells under comparision will be passed.\r\n   * The sort fucntion is expected to\r\n   * 1. return -1 if a < b\r\n   * 2. return  0 if a = b\r\n   * 3. return  1 in other cases\r\n   *\r\n   * TODO add a event\r\n   */\r\n  sortFunction?: (a: any, b: any) => number;\r\n\r\n  /**\r\n   * Custom data accessor for retreiving a cell value from a object. by default the column name is used\r\n   * for retreiving the value\r\n   */\r\n  dataAccessor?: (rowValue: any) => any;\r\n}\r\n\r\nexport class PaginationOptions {\r\n  /**\r\n   * the page sizes applicable\r\n   */\r\n  pageSizes: number[];\r\n\r\n  /**\r\n   * the total number of items. defaults to the number of items given to mat table data\r\n   */\r\n  totalItems?: number;\r\n}\r\n\r\n/**\r\n * Table level sorting options\r\n */\r\nexport class SortingOptions {\r\n  /**\r\n   * the name of column that is sorted by default in the table\r\n   */\r\n  defaultSortedColumn?: string;\r\n  /**\r\n   * the sort order for the `defaultSortedColumn`\r\n   */\r\n  defaultSortDirection?: SortDirection;\r\n}\r\n\r\nexport class TableViewChange {\r\n  /**\r\n   * the current paging status if applicable\r\n   */\r\n  page?: TablePageState;\r\n\r\n  /**\r\n   * the current sort status if applicable\r\n   */\r\n  sort?: TableSortState;\r\n}\r\n\r\nexport class TablePageState {\r\n  pageSize?: number;\r\n  pageIndex: number;\r\n}\r\n\r\nexport class TableSortState {\r\n  /**\r\n   * the name of the column that is currently sorted. undefined if none sorted\r\n   */\r\n  sortedColumn?: string;\r\n  sortDirection?: SortDirection;\r\n}\r\n\r\nexport type SortDirection = 'asc' | 'desc';\r\n",
+      "properties": [
+        {
+          "name": "columns",
+          "type": "ColumnConfig[]",
+          "optional": false,
+          "description": "",
+          "line": 2
+        },
+        {
+          "name": "hasPagination",
+          "type": "boolean",
+          "optional": true,
+          "description": "<p>does the table have pagination. defaults to false</p>\n",
+          "line": 7
+        },
+        {
+          "name": "pagination",
+          "type": "PaginationOptions",
+          "optional": true,
+          "description": "<p>the pagination config for table. used only if <code>hasPagination</code> is <code>true</code></p>\n<p>TODO Add event</p>\n",
+          "line": 14
+        },
+        {
+          "name": "sortOptions",
+          "type": "SortingOptions",
+          "optional": true,
+          "description": "<p>the sort config for the table</p>\n",
+          "line": 19
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    },
+    {
+      "name": "TablePageState",
+      "id": "class-TablePageState-8337840a915e61e467794b615b9f164a",
+      "file": "src/lib/components/table/table.model.ts",
+      "type": "class",
+      "sourceCode": "export class TableConfig {\r\n  columns: ColumnConfig[];\r\n\r\n  /**\r\n   * does the table have pagination. defaults to false\r\n   */\r\n  hasPagination?: boolean;\r\n\r\n  /**\r\n   * the pagination config for table. used only if `hasPagination` is `true`\r\n   *\r\n   * TODO Add event\r\n   */\r\n  pagination?: PaginationOptions;\r\n\r\n  /**\r\n   * the sort config for the table\r\n   */\r\n  sortOptions?: SortingOptions;\r\n}\r\n\r\nexport class ColumnConfig {\r\n  /**\r\n   * the column heading\r\n   * TODO: title\r\n   */\r\n  title: string;\r\n  /**\r\n   * the name of the column.\r\n   * #### Used for accessing the value of a cell from the data object if no accessor is passed\r\n   */\r\n  name: string;\r\n  /**\r\n   * is the column hidden\r\n   */\r\n  hidden?: boolean;\r\n\r\n  /**\r\n   * is the column sortable\r\n   */\r\n  sortable?: boolean;\r\n  /**\r\n   * a custom sort function. the value of the cells under comparision will be passed.\r\n   * The sort fucntion is expected to\r\n   * 1. return -1 if a < b\r\n   * 2. return  0 if a = b\r\n   * 3. return  1 in other cases\r\n   *\r\n   * TODO add a event\r\n   */\r\n  sortFunction?: (a: any, b: any) => number;\r\n\r\n  /**\r\n   * Custom data accessor for retreiving a cell value from a object. by default the column name is used\r\n   * for retreiving the value\r\n   */\r\n  dataAccessor?: (rowValue: any) => any;\r\n}\r\n\r\nexport class PaginationOptions {\r\n  /**\r\n   * the page sizes applicable\r\n   */\r\n  pageSizes: number[];\r\n\r\n  /**\r\n   * the total number of items. defaults to the number of items given to mat table data\r\n   */\r\n  totalItems?: number;\r\n}\r\n\r\n/**\r\n * Table level sorting options\r\n */\r\nexport class SortingOptions {\r\n  /**\r\n   * the name of column that is sorted by default in the table\r\n   */\r\n  defaultSortedColumn?: string;\r\n  /**\r\n   * the sort order for the `defaultSortedColumn`\r\n   */\r\n  defaultSortDirection?: SortDirection;\r\n}\r\n\r\nexport class TableViewChange {\r\n  /**\r\n   * the current paging status if applicable\r\n   */\r\n  page?: TablePageState;\r\n\r\n  /**\r\n   * the current sort status if applicable\r\n   */\r\n  sort?: TableSortState;\r\n}\r\n\r\nexport class TablePageState {\r\n  pageSize?: number;\r\n  pageIndex: number;\r\n}\r\n\r\nexport class TableSortState {\r\n  /**\r\n   * the name of the column that is currently sorted. undefined if none sorted\r\n   */\r\n  sortedColumn?: string;\r\n  sortDirection?: SortDirection;\r\n}\r\n\r\nexport type SortDirection = 'asc' | 'desc';\r\n",
+      "properties": [
+        {
+          "name": "pageIndex",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 100
+        },
+        {
+          "name": "pageSize",
+          "type": "number",
+          "optional": true,
+          "description": "",
+          "line": 99
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    },
+    {
+      "name": "TableSortState",
+      "id": "class-TableSortState-8337840a915e61e467794b615b9f164a",
+      "file": "src/lib/components/table/table.model.ts",
+      "type": "class",
+      "sourceCode": "export class TableConfig {\r\n  columns: ColumnConfig[];\r\n\r\n  /**\r\n   * does the table have pagination. defaults to false\r\n   */\r\n  hasPagination?: boolean;\r\n\r\n  /**\r\n   * the pagination config for table. used only if `hasPagination` is `true`\r\n   *\r\n   * TODO Add event\r\n   */\r\n  pagination?: PaginationOptions;\r\n\r\n  /**\r\n   * the sort config for the table\r\n   */\r\n  sortOptions?: SortingOptions;\r\n}\r\n\r\nexport class ColumnConfig {\r\n  /**\r\n   * the column heading\r\n   * TODO: title\r\n   */\r\n  title: string;\r\n  /**\r\n   * the name of the column.\r\n   * #### Used for accessing the value of a cell from the data object if no accessor is passed\r\n   */\r\n  name: string;\r\n  /**\r\n   * is the column hidden\r\n   */\r\n  hidden?: boolean;\r\n\r\n  /**\r\n   * is the column sortable\r\n   */\r\n  sortable?: boolean;\r\n  /**\r\n   * a custom sort function. the value of the cells under comparision will be passed.\r\n   * The sort fucntion is expected to\r\n   * 1. return -1 if a < b\r\n   * 2. return  0 if a = b\r\n   * 3. return  1 in other cases\r\n   *\r\n   * TODO add a event\r\n   */\r\n  sortFunction?: (a: any, b: any) => number;\r\n\r\n  /**\r\n   * Custom data accessor for retreiving a cell value from a object. by default the column name is used\r\n   * for retreiving the value\r\n   */\r\n  dataAccessor?: (rowValue: any) => any;\r\n}\r\n\r\nexport class PaginationOptions {\r\n  /**\r\n   * the page sizes applicable\r\n   */\r\n  pageSizes: number[];\r\n\r\n  /**\r\n   * the total number of items. defaults to the number of items given to mat table data\r\n   */\r\n  totalItems?: number;\r\n}\r\n\r\n/**\r\n * Table level sorting options\r\n */\r\nexport class SortingOptions {\r\n  /**\r\n   * the name of column that is sorted by default in the table\r\n   */\r\n  defaultSortedColumn?: string;\r\n  /**\r\n   * the sort order for the `defaultSortedColumn`\r\n   */\r\n  defaultSortDirection?: SortDirection;\r\n}\r\n\r\nexport class TableViewChange {\r\n  /**\r\n   * the current paging status if applicable\r\n   */\r\n  page?: TablePageState;\r\n\r\n  /**\r\n   * the current sort status if applicable\r\n   */\r\n  sort?: TableSortState;\r\n}\r\n\r\nexport class TablePageState {\r\n  pageSize?: number;\r\n  pageIndex: number;\r\n}\r\n\r\nexport class TableSortState {\r\n  /**\r\n   * the name of the column that is currently sorted. undefined if none sorted\r\n   */\r\n  sortedColumn?: string;\r\n  sortDirection?: SortDirection;\r\n}\r\n\r\nexport type SortDirection = 'asc' | 'desc';\r\n",
+      "properties": [
+        {
+          "name": "sortDirection",
+          "type": "SortDirection",
+          "optional": true,
+          "description": "",
+          "line": 108
+        },
+        {
+          "name": "sortedColumn",
+          "type": "string",
+          "optional": true,
+          "description": "<p>the name of the column that is currently sorted. undefined if none sorted</p>\n",
+          "line": 107
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    },
+    {
+      "name": "TableViewChange",
+      "id": "class-TableViewChange-8337840a915e61e467794b615b9f164a",
+      "file": "src/lib/components/table/table.model.ts",
+      "type": "class",
+      "sourceCode": "export class TableConfig {\r\n  columns: ColumnConfig[];\r\n\r\n  /**\r\n   * does the table have pagination. defaults to false\r\n   */\r\n  hasPagination?: boolean;\r\n\r\n  /**\r\n   * the pagination config for table. used only if `hasPagination` is `true`\r\n   *\r\n   * TODO Add event\r\n   */\r\n  pagination?: PaginationOptions;\r\n\r\n  /**\r\n   * the sort config for the table\r\n   */\r\n  sortOptions?: SortingOptions;\r\n}\r\n\r\nexport class ColumnConfig {\r\n  /**\r\n   * the column heading\r\n   * TODO: title\r\n   */\r\n  title: string;\r\n  /**\r\n   * the name of the column.\r\n   * #### Used for accessing the value of a cell from the data object if no accessor is passed\r\n   */\r\n  name: string;\r\n  /**\r\n   * is the column hidden\r\n   */\r\n  hidden?: boolean;\r\n\r\n  /**\r\n   * is the column sortable\r\n   */\r\n  sortable?: boolean;\r\n  /**\r\n   * a custom sort function. the value of the cells under comparision will be passed.\r\n   * The sort fucntion is expected to\r\n   * 1. return -1 if a < b\r\n   * 2. return  0 if a = b\r\n   * 3. return  1 in other cases\r\n   *\r\n   * TODO add a event\r\n   */\r\n  sortFunction?: (a: any, b: any) => number;\r\n\r\n  /**\r\n   * Custom data accessor for retreiving a cell value from a object. by default the column name is used\r\n   * for retreiving the value\r\n   */\r\n  dataAccessor?: (rowValue: any) => any;\r\n}\r\n\r\nexport class PaginationOptions {\r\n  /**\r\n   * the page sizes applicable\r\n   */\r\n  pageSizes: number[];\r\n\r\n  /**\r\n   * the total number of items. defaults to the number of items given to mat table data\r\n   */\r\n  totalItems?: number;\r\n}\r\n\r\n/**\r\n * Table level sorting options\r\n */\r\nexport class SortingOptions {\r\n  /**\r\n   * the name of column that is sorted by default in the table\r\n   */\r\n  defaultSortedColumn?: string;\r\n  /**\r\n   * the sort order for the `defaultSortedColumn`\r\n   */\r\n  defaultSortDirection?: SortDirection;\r\n}\r\n\r\nexport class TableViewChange {\r\n  /**\r\n   * the current paging status if applicable\r\n   */\r\n  page?: TablePageState;\r\n\r\n  /**\r\n   * the current sort status if applicable\r\n   */\r\n  sort?: TableSortState;\r\n}\r\n\r\nexport class TablePageState {\r\n  pageSize?: number;\r\n  pageIndex: number;\r\n}\r\n\r\nexport class TableSortState {\r\n  /**\r\n   * the name of the column that is currently sorted. undefined if none sorted\r\n   */\r\n  sortedColumn?: string;\r\n  sortDirection?: SortDirection;\r\n}\r\n\r\nexport type SortDirection = 'asc' | 'desc';\r\n",
+      "properties": [
+        {
+          "name": "page",
+          "type": "TablePageState",
+          "optional": true,
+          "description": "<p>the current paging status if applicable</p>\n",
+          "line": 90
+        },
+        {
+          "name": "sort",
+          "type": "TableSortState",
+          "optional": true,
+          "description": "<p>the current sort status if applicable</p>\n",
+          "line": 95
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    },
+    {
+      "name": "UIConfig",
+      "id": "class-UIConfig-5049159be22d77478b6817cb4e782a2d",
+      "file": "src/lib/components/input-text/input-text.model.ts",
+      "type": "class",
+      "sourceCode": "import { MatFormFieldAppearance } from \"@angular/material/form-field\";\r\n\r\nexport class InputConfig {\r\n    /**\r\n     * @description autocomplete for input. Supports the values of standard input element.\r\n     */\r\n    autocomplete?: string;\r\n}\r\n\r\nexport class PrefixOrSuffixContent {\r\n    iconName?: string;\r\n    text?: string;\r\n}\r\n\r\nexport class UIConfig {\r\n    /**\r\n     * @description If true removes the required indicator\r\n     */\r\n    hideRequiredMarker?: boolean;\r\n\r\n    /**\r\n     * @description The form-field appearance style\r\n     */\r\n    formFieldAppearance?: MatFormFieldAppearance;\r\n}\r\n\r\nexport type InputSize = 'small' | 'medium' | 'large' | 'normal';",
+      "properties": [
+        {
+          "name": "formFieldAppearance",
+          "type": "MatFormFieldAppearance",
+          "optional": true,
+          "description": "",
+          "line": 24,
+          "jsdoctags": [
+            {
+              "pos": 488,
+              "end": 501,
+              "flags": 0,
+              "kind": 288,
+              "atToken": {
+                "pos": 488,
+                "end": 489,
+                "flags": 0,
+                "kind": 57
+              },
+              "tagName": {
+                "pos": 489,
+                "end": 500,
+                "flags": 0,
+                "escapedText": "description"
+              },
+              "comment": "<p>The form-field appearance style</p>\n"
+            }
+          ]
+        },
+        {
+          "name": "hideRequiredMarker",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 19,
+          "jsdoctags": [
+            {
+              "pos": 373,
+              "end": 386,
+              "flags": 0,
+              "kind": 288,
+              "atToken": {
+                "pos": 373,
+                "end": 374,
+                "flags": 0,
+                "kind": 57
+              },
+              "tagName": {
+                "pos": 374,
+                "end": 385,
+                "flags": 0,
+                "escapedText": "description"
+              },
+              "comment": "<p>If true removes the required indicator</p>\n"
+            }
+          ]
+        }
+      ],
+      "methods": [],
+      "indexSignatures": [],
+      "inputsClass": [],
+      "outputsClass": [],
+      "hostBindings": [],
+      "hostListeners": []
+    }
+  ],
+  "directives": [],
+  "components": [
+    {
+      "name": "FormControlErrorsComponent",
+      "id": "component-FormControlErrorsComponent-0d76aac34d2a5619e2a67da20595d67f",
+      "file": "src/lib/components/form-errors/form-control-errors/form-control-errors.component.ts",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "app-form-control-errors",
+      "styleUrls": ["./form-control-errors.component.scss"],
+      "styles": [],
+      "templateUrl": ["./form-control-errors.component.html"],
+      "viewProviders": [],
+      "inputsClass": [
+        {
+          "name": "control",
+          "line": 11,
+          "type": "NgControl"
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "hostBindings": [],
+      "hostListeners": [],
+      "description": "",
+      "rawdescription": "",
+      "type": "component",
+      "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { NgControl } from '@angular/forms';\r\n\r\n@Component({\r\n  selector: 'app-form-control-errors',\r\n  templateUrl: './form-control-errors.component.html',\r\n  styleUrls: ['./form-control-errors.component.scss']\r\n})\r\nexport class FormControlErrorsComponent implements OnInit {\r\n\r\n  @Input() control: NgControl;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+      "assetsDirs": [],
+      "styleUrlsData": [
+        {
+          "data": "",
+          "styleUrl": "./form-control-errors.component.scss"
+        }
+      ],
+      "stylesData": "",
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "args": [],
+        "line": 11
+      },
+      "implements": ["OnInit"],
+      "templateData": "<div *ngIf=\"control.dirty && control.touched\">\r\n  <span *ngFor=\"let error of control.errors | keyvalue\" class=\"form-error-text\">\r\n    {{error.key}}\r\n  </span>\r\n</div>\r\n"
+    },
+    {
+      "name": "InputTextComponent",
+      "id": "component-InputTextComponent-ba63e6046e9d1225f994ad16cae26185",
+      "file": "src/lib/components/input-text/input-text/input-text.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [
+        {
+          "name": "{\n    provide: NG_VALUE_ACCESSOR, useExisting: InputTextComponent, multi: true\n}",
+          "type": "component"
+        }
+      ],
+      "selector": "app-input-text",
+      "styleUrls": ["./input-text.component.scss"],
+      "styles": [],
+      "templateUrl": ["./input-text.component.html"],
+      "viewProviders": [],
+      "inputsClass": [
+        {
+          "name": "inputConfig",
+          "line": 29,
+          "type": "InputConfig"
+        },
+        {
+          "name": "prefix",
+          "line": 34,
+          "type": "PrefixOrSuffixContent"
+        },
+        {
+          "name": "size",
+          "line": 24,
+          "type": "InputSize"
+        },
+        {
+          "name": "suffix",
+          "line": 39,
+          "type": "PrefixOrSuffixContent"
+        }
+      ],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [],
+      "hostBindings": [],
+      "hostListeners": [],
+      "description": "",
+      "rawdescription": "",
+      "type": "component",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, Injector, Input, OnInit, Optional } from '@angular/core';\r\nimport { NG_VALUE_ACCESSOR } from '@angular/forms';\r\nimport { InputComponent } from '../../core/input-component';\r\nimport { InputConfig, InputSize, PrefixOrSuffixContent } from '../input-text.model';\r\n\r\n@Component({\r\n  selector: 'app-input-text',\r\n  templateUrl: './input-text.component.html',\r\n  styleUrls: ['./input-text.component.scss'],\r\n  providers: [\r\n    {\r\n    provide: NG_VALUE_ACCESSOR,\r\n    useExisting: InputTextComponent,\r\n    multi: true\r\n    }\r\n  ],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class InputTextComponent extends InputComponent implements OnInit {\r\n\r\n  /**\r\n   * @description size of the input field\r\n   */\r\n  @Input() size: InputSize;\r\n\r\n  /**\r\n   * @description metadata which needs to be passed to the input element\r\n   */\r\n  @Input() inputConfig: InputConfig;\r\n\r\n  /**\r\n   * @description text or an icon to be prefixed for input control\r\n   */\r\n  @Input() prefix: PrefixOrSuffixContent;\r\n\r\n  /**\r\n   * @description text or icon to be suffixed to inpuut control\r\n   */\r\n  @Input() suffix: PrefixOrSuffixContent;\r\n\r\n  constructor(injector: Injector) { \r\n    super(injector);\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    super.ngOnInit();\r\n  }\r\n\r\n}\r\n",
+      "assetsDirs": [],
+      "styleUrlsData": [
+        {
+          "data": "mat-icon {\r\n    vertical-align: sub;\r\n}",
+          "styleUrl": "./input-text.component.scss"
+        }
+      ],
+      "stylesData": "",
+      "constructorObj": {
+        "name": "constructor",
+        "description": "",
+        "args": [
+          {
+            "name": "injector",
+            "type": "Injector"
+          }
+        ],
+        "line": 39,
+        "jsdoctags": [
+          {
+            "name": "injector",
+            "type": "Injector",
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
+      },
+      "extends": "InputComponent",
+      "implements": ["OnInit"],
+      "templateData": "<div class=\"input-text-container\">\r\n    <mat-form-field [hideRequiredMarker]=\"uiConfig?.hideRequiredMarker\"\r\n        [class.mat-form-field-invalid]=\"ngControl?.errors\" [appearance]=\"uiConfig?.formFieldAppearance\">\r\n        <mat-label>{{label}}</mat-label>\r\n\r\n        <input matInput [placeholder]=\"placeholder\" [(ngModel)]=\"value\" type=\"text\" [disabled]=\"disabled\"\r\n            [required]=\"required\" [autocomplete]=\"inputConfig?.autocomplete ? inputConfig?.autocomplete: 'off'\"\r\n            [readonly]=\"readonly\" [attr.aria-invalid]=\"ngControl?.errors\" (blur)=\"onBlur()\">\r\n\r\n        <!-- prefix for input element -->\r\n        <mat-icon matPrefix *ngIf=\"prefix?.iconName; else prefixBlock\">{{prefix?.iconName}}</mat-icon>\r\n        <ng-template #prefixBlock>\r\n            <span matPrefix *ngIf=\"prefix?.text\">{{prefix?.text}}&nbsp;</span>\r\n        </ng-template>\r\n\r\n        <!-- Suffix for input element -->\r\n        <button *ngIf=\"clear && value; else customSuffixBlock\" matSuffix mat-icon-button aria-label=\"Clear\"\r\n            (click)=\"value=''\">\r\n            <mat-icon>close</mat-icon>\r\n        </button>\r\n        <ng-template #customSuffixBlock>\r\n            <mat-icon matSuffix *ngIf=\"suffix?.iconName; else suffixContentBlock\">{{suffix?.iconName}}</mat-icon>\r\n            <ng-template #suffixContentBlock>\r\n                <span matSuffix *ngIf=\"suffix?.text\">{{suffix?.text}}</span>\r\n            </ng-template>\r\n        </ng-template>\r\n\r\n    </mat-form-field>\r\n    <app-form-control-errors [control]=\"ngControl\" *ngIf=\"ngControl?.errors\"></app-form-control-errors>\r\n</div>"
+    },
+    {
+      "name": "TableComponent",
+      "id": "component-TableComponent-77951036deb48d846dd56baf9fe25e65",
+      "file": "src/lib/components/table/table-component/table.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
+      "encapsulation": [],
+      "entryComponents": [],
+      "inputs": [],
+      "outputs": [],
+      "providers": [],
+      "selector": "app-table",
+      "styleUrls": ["./table.component.scss"],
+      "styles": [],
+      "templateUrl": ["./table.component.html"],
+      "viewProviders": [],
+      "inputsClass": [
+        {
+          "name": "caption",
+          "line": 28,
+          "type": "string"
+        },
+        {
+          "name": "config",
+          "line": 33,
+          "type": "TableConfig"
+        },
+        {
+          "name": "data",
+          "line": 38,
+          "type": "Array<T>"
+        },
+        {
+          "name": "title",
+          "line": 23,
+          "type": "string"
+        }
+      ],
+      "outputsClass": [
+        {
+          "name": "tableViewChange",
+          "defaultValue": "new EventEmitter<TableViewChange>()",
+          "description": "",
+          "line": 46,
+          "type": "EventEmitter"
+        }
+      ],
+      "propertiesClass": [
+        {
+          "name": "dataSource",
+          "type": "MatTableDataSource<T> | PaginatedDataSource<T>",
+          "optional": false,
+          "description": "",
+          "line": 48,
+          "modifierKind": [114]
+        },
+        {
+          "name": "tablePaginator",
+          "type": "MatPaginator",
+          "optional": false,
+          "description": "",
+          "line": 41,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "MatPaginator"
+            }
+          ]
+        },
+        {
+          "name": "tableSorter",
+          "type": "MatSort",
+          "optional": false,
+          "description": "",
+          "line": 40,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "MatSort"
+            }
+          ]
+        }
+      ],
+      "methodsClass": [
+        {
+          "name": "getCellValue",
+          "args": [
+            {
+              "name": "columnConfig",
+              "type": "ColumnConfig"
+            },
+            {
+              "name": "rowData",
+              "type": "T"
+            }
+          ],
+          "optional": false,
+          "returnType": "any",
+          "typeParameters": [],
+          "line": 71,
+          "modifierKind": [114],
+          "jsdoctags": [
+            {
+              "name": "columnConfig",
+              "type": "ColumnConfig",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "rowData",
+              "type": "T",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        }
+      ],
+      "hostBindings": [],
+      "hostListeners": [],
+      "description": "",
+      "rawdescription": "",
+      "type": "component",
+      "sourceCode": "import {\r\n  AfterViewInit,\r\n  ChangeDetectionStrategy, Component,\r\n  EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild\r\n} from '@angular/core';\r\nimport { MatPaginator } from '@angular/material/paginator';\r\nimport { MatSort } from '@angular/material/sort';\r\nimport { MatTableDataSource } from '@angular/material/table';\r\nimport { ColumnConfig, TableConfig, TablePageState, TableViewChange } from '../table.model';\r\nimport { PaginatedDataSource } from '../paginated-data-source';\r\n\r\n@Component({\r\n  selector: 'app-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.scss'],\r\n  changeDetection: ChangeDetectionStrategy.OnPush\r\n})\r\nexport class TableComponent<T> implements OnInit, AfterViewInit, OnChanges {\r\n\r\n  /**\r\n   * @description the table title\r\n   */\r\n  @Input() title: string;\r\n\r\n  /**\r\n   * @description the caption for the table\r\n   */\r\n  @Input() caption: string;\r\n\r\n  /**\r\n   * @description the table configuration\r\n   */\r\n  @Input() config: TableConfig;\r\n\r\n  /**\r\n   * @description the data to be rendered in the table\r\n   */\r\n  @Input() data: Array<T>;\r\n\r\n  @ViewChild(MatSort) tableSorter: MatSort;\r\n  @ViewChild(MatPaginator) tablePaginator: MatPaginator;\r\n\r\n  /**\r\n   * @description event emitted whenever sorting or pagination is changed in the table\r\n   */\r\n  @Output() tableViewChange = new EventEmitter<TableViewChange>();\r\n\r\n  public dataSource: MatTableDataSource<T> | PaginatedDataSource<T>;\r\n\r\n  ngOnChanges(changes: SimpleChanges): void {\r\n    const tableDataChange = changes.data;\r\n    if (tableDataChange && !tableDataChange.isFirstChange()) {\r\n      this.dataSource.data = tableDataChange.currentValue;\r\n    }\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.createDataSource();\r\n  }\r\n\r\n  ngAfterViewInit(): void {\r\n    this.dataSource.sort = this.tableSorter;\r\n    this.handleSorting();\r\n    if (this.config.hasPagination) {\r\n      this.dataSource.paginator = this.tablePaginator;\r\n    }\r\n\r\n    this.handleTableEvents();\r\n  }\r\n\r\n  public getCellValue(columnConfig: ColumnConfig, rowData: T): any {\r\n    if (columnConfig.dataAccessor) {\r\n      return columnConfig.dataAccessor(rowData);\r\n    }\r\n    if (typeof rowData !== 'object' || Array.isArray(rowData) || !rowData) {\r\n      console.warn('cannot get column value from row data');\r\n      return '';\r\n    }\r\n\r\n    return (rowData as any)[columnConfig.name];\r\n  }\r\n\r\n  public get displayedColumns(): string[] {\r\n    return this.config?.columns?.filter(column => !column.hidden).map(column => column.name);\r\n  }\r\n\r\n  /**\r\n   * the data to a table can be given all at once or fetched on request\r\n   * the mat table data source works for client side pagination but not for server side pagination\r\n   * if the length of data given initially doesn't match the table length in config if any then\r\n   * it is considered as dynamic fetching of data. Here the user of the component needs to listen\r\n   * to the various events and set the table data\r\n   */\r\n  private createDataSource(): void {\r\n    if (!this.config?.pagination?.totalItems || this.config.pagination.totalItems === this.data?.length) {\r\n      this.dataSource = new MatTableDataSource(this.data);\r\n    } else {\r\n      // not all data is present. mat table data source doesn't work in this scenrio\r\n      this.dataSource = new PaginatedDataSource(this.config.pagination.totalItems, this.data);\r\n    }\r\n  }\r\n\r\n  private handleSorting(): void {\r\n    this.dataSource.sortData = (data, sort) => {\r\n      if (sort.direction === '') {\r\n        return this.data;\r\n      }\r\n      const sortingColumn = this.config.columns?.find(column => column.name === sort.active);\r\n      if (!sortingColumn) {\r\n        return this.data;\r\n      }\r\n      const sortedData = data?.sort((a, b) => {\r\n        const aVal = sortingColumn.dataAccessor ? sortingColumn.dataAccessor(a) : (a as any)[sortingColumn.name];\r\n        const bVal = sortingColumn.dataAccessor ? sortingColumn.dataAccessor(b) : (b as any)[sortingColumn.name];\r\n\r\n        if (sortingColumn.sortFunction) {\r\n          return sortingColumn.sortFunction(aVal, bVal);\r\n        }\r\n\r\n        return (aVal < bVal ? -1 : (aVal === bVal ? 0 : 1));\r\n      });\r\n      if (sort.direction === 'desc') {\r\n        return sortedData.reverse();\r\n      } else if (sort.direction === 'asc') {\r\n        return sortedData;\r\n      }\r\n      return this.data;\r\n    };\r\n  }\r\n\r\n  private handleTableEvents(): void {\r\n    if (this.config.hasPagination) {\r\n      this.tablePaginator.page.subscribe(() => this.emitTableViewState());\r\n    }\r\n    this.tableSorter.sortChange.subscribe(() => this.emitTableViewState());\r\n  }\r\n\r\n  private emitTableViewState(): void {\r\n    let pagingState: TablePageState | undefined;\r\n\r\n    if (this.config?.hasPagination) {\r\n      pagingState = {\r\n        pageIndex: this.tablePaginator.pageIndex,\r\n        pageSize: this.tablePaginator.pageSize\r\n      };\r\n    }\r\n\r\n    const sortState = {\r\n      sortedColumn: this.tableSorter.active,\r\n      sortDirection: this.tableSorter.direction as any\r\n    };\r\n\r\n    this.tableViewChange.emit({\r\n      page: pagingState,\r\n      sort: sortState\r\n    });\r\n  }\r\n}\r\n",
+      "assetsDirs": [],
+      "styleUrlsData": [
+        {
+          "data": ".table {\r\n  width: 100%;\r\n}\r\n.table-title {\r\n  margin: 0;\r\n}\r\n.table-title-container {\r\n  padding-left: 4px;\r\n}\r\n",
+          "styleUrl": "./table.component.scss"
+        }
+      ],
+      "stylesData": "",
+      "implements": ["OnInit", "AfterViewInit", "OnChanges"],
+      "accessors": {
+        "displayedColumns": {
+          "name": "displayedColumns",
+          "getSignature": {
+            "name": "displayedColumns",
+            "type": "[]",
+            "returnType": "string[]",
+            "line": 83
+          }
+        }
+      },
+      "templateData": "<div class=\"table-container\">\r\n  <div class=\"table-title-container\" *ngIf=\"title || caption\">\r\n    <h2 class=\"table-title\" *ngIf=\"title\">{{title}}</h2>\r\n    <span class=\"table-caption\" *ngIf=\"caption\">{{caption}}</span>\r\n  </div>\r\n  <table mat-table [dataSource]=\"dataSource\" matSort class=\"table\"\r\n    [matSortActive]=\"config?.sortOptions?.defaultSortedColumn\"\r\n    [matSortDirection]=\"config?.sortOptions?.defaultSortDirection ? config.sortOptions?.defaultSortDirection : 'asc'\">\r\n\r\n    <ng-container *ngFor=\"let column of config?.columns\">\r\n      <ng-container [matColumnDef]=\"column.name\" *ngIf=\"!column.hidden\">\r\n        <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]=\"!column.sortable\"> {{ column.title }} </th>\r\n        <td mat-cell *matCellDef=\"let row\"> {{ getCellValue(column, row) }} </td>\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <tr mat-header-row *matHeaderRowDef=\"displayedColumns\"></tr>\r\n    <tr mat-row *matRowDef=\"let row; columns: displayedColumns;\"></tr>\r\n  </table>\r\n\r\n  <mat-paginator *ngIf=\"config.hasPagination\" [pageSizeOptions]=\"config.pagination.pageSizes\" [length]=\"config?.pagination.totalItems\">\r\n  </mat-paginator>\r\n</div>\r\n"
+    }
+  ],
+  "modules": [
+    {
+      "name": "FormErrorsModule",
+      "children": [
+        {
+          "type": "providers",
+          "elements": []
+        },
+        {
+          "type": "declarations",
+          "elements": [
+            {
+              "name": "FormControlErrorsComponent"
+            }
+          ]
+        },
+        {
+          "type": "imports",
+          "elements": []
+        },
+        {
+          "type": "exports",
+          "elements": [
+            {
+              "name": "FormControlErrorsComponent"
+            }
+          ]
+        },
+        {
+          "type": "bootstrap",
+          "elements": []
+        },
+        {
+          "type": "classes",
+          "elements": []
+        }
+      ]
+    },
+    {
+      "name": "InputTextModule",
+      "children": [
+        {
+          "type": "providers",
+          "elements": []
+        },
+        {
+          "type": "declarations",
+          "elements": [
+            {
+              "name": "InputTextComponent"
+            }
+          ]
+        },
+        {
+          "type": "imports",
+          "elements": [
+            {
+              "name": "FormErrorsModule"
+            }
+          ]
+        },
+        {
+          "type": "exports",
+          "elements": [
+            {
+              "name": "InputTextComponent"
+            }
+          ]
+        },
+        {
+          "type": "bootstrap",
+          "elements": []
+        },
+        {
+          "type": "classes",
+          "elements": []
+        }
+      ]
+    },
+    {
+      "name": "TableModule",
+      "children": [
+        {
+          "type": "providers",
+          "elements": []
+        },
+        {
+          "type": "declarations",
+          "elements": [
+            {
+              "name": "TableComponent"
+            }
+          ]
+        },
+        {
+          "type": "imports",
+          "elements": []
+        },
+        {
+          "type": "exports",
+          "elements": [
+            {
+              "name": "TableComponent"
+            }
+          ]
+        },
+        {
+          "type": "bootstrap",
+          "elements": []
+        },
+        {
+          "type": "classes",
+          "elements": []
+        }
+      ]
+    }
+  ],
+  "miscellaneous": {
+    "variables": [],
+    "functions": [],
+    "typealiases": [
+      {
+        "name": "InputSize",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"small\" | \"medium\" | \"large\" | \"normal\"",
+        "file": "src/lib/components/input-text/input-text.model.ts",
+        "description": "",
+        "kind": 168
+      },
+      {
+        "name": "SortDirection",
+        "ctype": "miscellaneous",
+        "subtype": "typealias",
+        "rawtype": "\"asc\" | \"desc\"",
+        "file": "src/lib/components/table/table.model.ts",
+        "description": "",
+        "kind": 168
+      }
+    ],
+    "enumerations": [],
+    "groupedVariables": {},
+    "groupedFunctions": {},
+    "groupedEnumerations": {},
+    "groupedTypeAliases": {
+      "src/lib/components/input-text/input-text.model.ts": [
+        {
+          "name": "InputSize",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"small\" | \"medium\" | \"large\" | \"normal\"",
+          "file": "src/lib/components/input-text/input-text.model.ts",
+          "description": "",
+          "kind": 168
+        }
+      ],
+      "src/lib/components/table/table.model.ts": [
+        {
+          "name": "SortDirection",
+          "ctype": "miscellaneous",
+          "subtype": "typealias",
+          "rawtype": "\"asc\" | \"desc\"",
+          "file": "src/lib/components/table/table.model.ts",
+          "description": "",
+          "kind": 168
+        }
+      ]
+    }
+  }
+}

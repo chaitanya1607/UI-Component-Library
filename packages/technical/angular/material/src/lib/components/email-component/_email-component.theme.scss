@@ -1,0 +1,21 @@
+@use '~@angular/material' as mat;
+
+@mixin email-theme($theme) {
+
+    $primary: map-get(mat.get-color-config($theme), 'primary');
+    $accent: map-get(mat.get-color-config($theme), 'accent');
+    $warn: map-get(mat.get-color-config($theme), 'warn');
+
+    .email-import-data-file-error-msg, .email-import-data-file-remove-btn-icon {
+        color: map-get($warn, default);
+    }
+
+    .email-import-data-btn, .send-email-btn {
+        background-color: map-get($accent, default);
+    }
+
+    .email-import-data-file-name {
+        color: map-get($map: $primary, $key: 'default');
+    }
+
+}

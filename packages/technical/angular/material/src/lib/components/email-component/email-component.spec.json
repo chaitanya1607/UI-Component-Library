@@ -1,0 +1,149 @@
+{
+  "name": "Email Component",
+  "description": "Email component with fields, To, Subject and Editor to compose the message. user can also import data file, containing the email addresses and may be firstname and lastname, of type csv.",
+  "selector": "app-email",
+  "inputs": [
+    {
+      "name": "initialValue",
+      "description": "Initial value to the email component",
+      "type": "object",
+      "properties": [
+        {
+          "name": "toAdresses",
+          "type": "array",
+          "itemsType": "string",
+          "description": "Array of emails to which email needs to be sent"
+        },
+        {
+          "name": "subject",
+          "type": "string",
+          "description": "Subject for the email"
+        },
+        {
+          "name": "body",
+          "type": "object",
+          "description": "Content of the email",
+          "properties": [
+            {
+              "name": "content",
+              "description": "Body of the email. It can be simple text or can be a template",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "addresesData",
+          "description": "Imported data file, uploaded by user, which will be in the format of the template, containing the email addresses, and may be first name and lastname. By default it supports .csv or .xl(s|sx) files.",
+          "type": "file"
+        }
+      ]
+    },
+    {
+      "name": "emailConfig",
+      "description": "Configurations for the email",
+      "type": "object",
+      "properties": [
+        {
+          "name": "pathForDownloadTemplate",
+          "description": "Path for the download template, which will be used to import the data",
+          "type": "string"
+        },
+        {
+          "name": "fileTypesForImport",
+          "description": "Supported file types for importing data.",
+          "type": "array",
+          "itemsType": "string"
+        }
+      ]
+    },
+    {
+      "name": "emailInstructions",
+      "description": "Any instructions or note which need to be shown below the email body field",
+      "type": "string"
+    }
+  ],
+  "events": [
+    {
+      "name": "sendEvent",
+      "type": "object",
+      "description": "Emits an event of type object with properties, email and importedData",
+      "properties": [
+        {
+          "name": "email",
+          "description": "Email data",
+          "type": "object",
+          "properties": [
+            {
+              "name": "toAdresses",
+              "type": "array",
+              "itemsType": "string",
+              "description": "Array of emails to which email needs to be sent"
+            },
+            {
+              "name": "subject",
+              "type": "string",
+              "description": "Subject for the email"
+            },
+            {
+              "name": "body",
+              "type": "object",
+              "description": "Content of the email",
+              "properties": [
+                {
+                  "name": "content",
+                  "description": "Body of the email. It can be simple text or can be a template",
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "importedAddresesData",
+              "description": "Imported data file, uploaded by user, which will be in the format of the template, containing the email addresses, and may be first name and lastname. By default it supports .csv or .xl(s|sx) files.",
+              "type": "file"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "cancelEvent",
+      "description": "Emits the event with data as cancelled",
+      "type": "string"
+    },
+    {
+      "name": "fileImportedEvent",
+      "description": "Emits the event with file is imported",
+      "type": "file"
+    }
+  ],
+  "localeSpecifications": {
+    "description": "Keys which will be used for the labels. This keys needs to be configured in the messages file.",
+    "keys": [
+      {
+        "key": "email.to",
+        "description": "key whose value will be used as a label for toAddresses field"
+      },
+      {
+        "key": "email.subject",
+        "description": "key whose value will be used as a label for subject field"
+      },
+      {
+        "key": "email.importData",
+        "description": "key whose value will be used as a label for import data button"
+      },
+      {
+        "key": "email.downloadTemplate",
+        "description": "key whose value will be used as a label for download template option"
+      },
+      {
+        "key": "common.or",
+        "description": "key whose value will be used as to represent 'OR'"
+      },
+      {
+        "key": "email.importData.invalidFileType",
+        "description": "key whose value will be used as error message for invalid imported data file type"
+      }
+    ],
+    "defaultLocale": "en_US"
+  }
+}
